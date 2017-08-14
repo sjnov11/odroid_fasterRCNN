@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54dba45b-c640-4939-b052-7b880fe8cf24}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>demo.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="demo.py" />
+    <Compile Include="faster_rcnn_codes\fast_rcnn\bbox_transform.py" />
+    <Compile Include="faster_rcnn_codes\fast_rcnn\config.py" />
+    <Compile Include="faster_rcnn_codes\fast_rcnn\nms_wrapper.py" />
+    <Compile Include="faster_rcnn_codes\fast_rcnn\test.py" />
+    <Compile Include="faster_rcnn_codes\fast_rcnn\train.py" />
+    <Compile Include="faster_rcnn_codes\fast_rcnn\__init__.py" />
+    <Compile Include="faster_rcnn_codes\rpn\anchor_target_layer.py" />
+    <Compile Include="faster_rcnn_codes\rpn\generate.py" />
+    <Compile Include="faster_rcnn_codes\rpn\generate_anchors.py" />
+    <Compile Include="faster_rcnn_codes\rpn\proposal_layer.py" />
+    <Compile Include="faster_rcnn_codes\rpn\proposal_target_layer.py" />
+    <Compile Include="faster_rcnn_codes\rpn\__init__.py" />
+    <Compile Include="faster_rcnn_codes\utils\blob.py" />
+    <Compile Include="faster_rcnn_codes\utils\timer.py" />
+    <Compile Include="faster_rcnn_codes\utils\__init__.py" />
+    <Compile Include="mnist.py" />
+    <Compile Include="mnist\load_mnist.py" />
+    <Compile Include="py\BufferManager.py" />
+    <Compile Include="py\CaffeFunction.py" />
+    <Compile Include="py\caffe_pb2.py" />
+    <Compile Include="py\ContextManager.py" />
+    <Compile Include="py\DeepFunction.py" />
+    <Compile Include="py\Operator.py" />
+    <Compile Include="py\RCNNOperator.py" />
+    <Compile Include="py\__init__.py" />
+    <Compile Include="setup.py" />
+    <Compile Include="test.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="demo\000001.jpg" />
+    <Content Include="demo\000002.jpg" />
+    <Content Include="demo\000456.jpg" />
+    <Content Include="demo\001141.jpg" />
+    <Content Include="demo\004545.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="demo" />
+    <Folder Include="faster_rcnn_codes\fast_rcnn" />
+    <Folder Include="faster_rcnn_codes\rpn" />
+    <Folder Include="faster_rcnn_codes\utils" />
+    <Folder Include="mnist" />
+    <Folder Include="py" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
