@@ -58,7 +58,7 @@ class DevTempTensor:
 	def ref(self):
 		self.ref_count += 1
 
-	def setShape(self, shape, dtype = np.float16):
+	def setShape(self, shape, dtype = np.float32):
 		if(self.shape != shape):
 			self.pos = "d"
 			self.host_buf = None
