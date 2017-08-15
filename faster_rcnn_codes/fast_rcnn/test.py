@@ -31,7 +31,7 @@ def _get_image_blob(im):
         im_scale_factors (list): list of image scales (relative to im) used
             in the image pyramid
     """
-    im_orig = im.astype(np.float16, copy=True)
+    im_orig = im.astype(np.float32, copy=True)
     im_orig -= cfg.PIXEL_MEANS
 
     im_shape = im_orig.shape
@@ -68,7 +68,7 @@ def _get_rois_blob(im_rois, im_scale_factors):
     """
     rois, levels = _project_im_rois(im_rois, im_scale_factors)
     rois_blob = np.hstack((levels, rois))
-    return rois_blob.astype(np.float16, copy=False)
+    return rois_blob.astype(np.float32, copy=False)
 
 def _project_im_rois(im_rois, scales):
     """Project image RoIs into the image pyramid built by _get_image_blob.
@@ -138,7 +138,7 @@ def im_detect(net, im, boxes=None):
         im_blob = blobs['data']
         blobs['im_info'] = np.array(
             [[im_blob.shape[2], im_blob.shape[3], im_scales[0]]],
-            dtype=np.float32)
+            dtype=np.float16)
 
     #print(im_blob.shape)
     #print(blobs['im_info'].shape)
