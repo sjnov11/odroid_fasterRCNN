@@ -126,7 +126,6 @@ def im_detect(net, im, boxes=None):
     # Here, we identify duplicate feature ROIs, so we only compute features
     # on the unique subset.
     
-    # Aliasing 현상 제거
     if cfg.DEDUP_BOXES > 0 and not cfg.TEST.HAS_RPN:
         v = np.array([1, 1e3, 1e6, 1e9, 1e12])
         hashes = np.round(blobs['rois'] * cfg.DEDUP_BOXES).dot(v)
