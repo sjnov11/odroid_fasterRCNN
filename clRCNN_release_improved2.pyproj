@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="demo" />
+    <Folder Include="faster_rcnn_codes\" />
     <Folder Include="faster_rcnn_codes\fast_rcnn" />
     <Folder Include="faster_rcnn_codes\rpn" />
     <Folder Include="faster_rcnn_codes\utils" />
