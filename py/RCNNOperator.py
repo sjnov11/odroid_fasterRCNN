@@ -233,8 +233,8 @@ class Proposal(Operator):
 		# Output rois blob
 		# Our RPN implementation only supports a single input image, so all
 		# batch inds are 0
-		batch_inds = np.zeros((proposals.shape[0], 1), dtype=np.float16)
-		blob = np.hstack((batch_inds, proposals.astype(np.float16, copy=False)))
+		batch_inds = np.zeros((proposals.shape[0], 1), dtype=np.float32)
+		blob = np.hstack((batch_inds, proposals.astype(np.float32, copy=False)))
 
 		self.output_act.setShape(blob.shape)
 		output = self.output_act.getDevBuf()
