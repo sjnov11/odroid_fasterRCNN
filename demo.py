@@ -102,7 +102,7 @@ def demo(net, image_name):
            '{:d} object proposals').format(timer.total_time, boxes.shape[0])
     
     # Visualize detections for each class
-    CONF_THRESH = 0.5
+    CONF_THRESH = 0.1
     NMS_THRESH = 0.3
     for cls_ind, cls in enumerate(CLASSES[1:]):
         cls_ind += 1 # because we skipped background
