@@ -31,7 +31,8 @@ class CaffeFunction(DeepFunction):
     print("Reading caffe proto and model is finisehd.")
 
     # input creation/allocation
-    for i in xrange(len(net.input)):     
+    for i in xrange(len(net.input)):    
+      print(net.input[i]) 
       self.input[net.input[i]] = self.getDevTempTensor(net.input[i], True)
 
     # create operators
