@@ -37,6 +37,7 @@ class CaffeFunction(DeepFunction):
 
     # create operators
     for l in net.layer:
+      print(l)
       l_blob = []
 
       for idx in xrange(self.weight.num_blobs(str(l.name))):
