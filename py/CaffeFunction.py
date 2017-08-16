@@ -27,7 +27,8 @@ class CaffeFunction(DeepFunction):
         
     # C++에서 관리하는 메모리 객체는 계속 들고있어야 한다. 
     # TODO: Dynamically alloc/dealloc weight data on python
-    self.weight = proto_reader.ProtoReader(model)    
+    self.weight = proto_reader.ProtoReader(model)   
+    print("weight : " , self.weight) 
     print("Reading caffe proto and model is finisehd.")
 
     # input creation/allocation
@@ -40,7 +41,7 @@ class CaffeFunction(DeepFunction):
       l_blob = []
 
       for idx in xrange(self.weight.num_blobs(str(l.name))):
-        print("idx:", idx)
+        print("idx:",idx, "weight:", self.weight.get_blob(str(l.name), idx))
         l_blob.append(self.weight.get_blob(str(l.name), idx))
       
       if l.type == "Python" and l.python_param.layer == "ProposalLayer":
