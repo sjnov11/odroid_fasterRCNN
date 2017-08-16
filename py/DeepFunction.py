@@ -116,7 +116,6 @@ class DeepFunction(object):
 	def run(self, q, input_map, output_in = []):
 		for key, value in input_map.items():
 			self.m_act[key].setShape(value.shape)
-            print(value.shape)
 			pyCL.enqueue_copy(q, self.m_act[key].getDevBuf().toDev(), value.copy(), is_blocking = False)
 		
 		for output in output_in:
