@@ -48,6 +48,8 @@ class CaffeFunction(DeepFunction):
         self.ops.append(Proposal(l, l_blob, self))
       else:
         self.ops.append(str2class(l.type)(l, l_blob, self))
+    for op in self.ops:
+        print(op)
     print("Device allcation and operator creation are finished")
 
     
