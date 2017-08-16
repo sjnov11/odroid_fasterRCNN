@@ -55,7 +55,7 @@ def vis_detections(im, class_name, dets, thresh=0.5):
     print(inds)
     if len(inds) == 0:
         return
-
+    """
     im = im[:, :, (2, 1, 0)]
     fig, ax = plt.subplots(figsize=(12, 12))
     ax.imshow(im, aspect='equal')
@@ -81,7 +81,7 @@ def vis_detections(im, class_name, dets, thresh=0.5):
     plt.axis('off')
     plt.tight_layout()
     plt.draw()
-
+    """
 
 def demo(net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
@@ -101,7 +101,7 @@ def demo(net, image_name):
 
     print ('Detection took {:.3f}s for '
            '{:d} object proposals').format(timer.total_time, boxes.shape[0])
-    """
+    
     # Visualize detections for each class
     CONF_THRESH = 0.8
     NMS_THRESH = 0.3
@@ -114,7 +114,7 @@ def demo(net, image_name):
         keep = nms(dets, NMS_THRESH)
         dets = dets[keep, :]
         vis_detections(im, cls, dets, thresh=CONF_THRESH)
-    """
+    
     
 def parse_args():
     """Parse input arguments."""
