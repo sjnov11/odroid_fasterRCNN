@@ -41,7 +41,7 @@ class CaffeFunction(DeepFunction):
       l_blob = []
 
       for idx in xrange(self.weight.num_blobs(str(l.name))):
-        print("idx:",idx, "weight:", self.weight.get_blob(str(l.name), idx))
+        #print("idx:",idx, "weight:", self.weight.get_blob(str(l.name), idx))
         l_blob.append(self.weight.get_blob(str(l.name), idx))
       
       if l.type == "Python" and l.python_param.layer == "ProposalLayer":
