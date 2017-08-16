@@ -45,8 +45,9 @@ class CaffeFunction(DeepFunction):
         l_blob.append(self.weight.get_blob(str(l.name), idx))
       
       if l.type == "Python" and l.python_param.layer == "ProposalLayer":
-        print(Proposal(l, l_blob, self))
+        
         self.ops.append(Proposal(l, l_blob, self))
+        print(self.ops[0])
       else:
         self.ops.append(str2class(l.type)(l, l_blob, self))
     print("Device allcation and operator creation are finished")
