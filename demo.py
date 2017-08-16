@@ -161,4 +161,4 @@ if __name__ == '__main__':
         print 'Demo for {}'.format(im_name)
         demo(net, im_name)
 
-    plt.show()
+    #plt.show()

@@ -31,7 +31,7 @@ def _get_image_blob(im):
         im_scale_factors (list): list of image scales (relative to im) used
             in the image pyramid
     """
-    im_orig = im.astype(np.float16, copy=True)
+    im_orig = im.astype(np.float32, copy=True)
     im_orig -= cfg.PIXEL_MEANS
 
     im_shape = im_orig.shape
@@ -68,7 +68,7 @@ def _get_rois_blob(im_rois, im_scale_factors):
     """
     rois, levels = _project_im_rois(im_rois, im_scale_factors)
     rois_blob = np.hstack((levels, rois))
-    return rois_blob.astype(np.float16, copy=False)
+    return rois_blob.astype(np.float32, copy=False)
 
 def _project_im_rois(im_rois, scales):
     """Project image RoIs into the image pyramid built by _get_image_blob.
@@ -151,11 +151,11 @@ def im_detect(net, im, boxes=None):
     #    net.blobs['rois'].reshape(*(blobs['rois'].shape))
 
     # do forward
-    forward_kwargs = {'data': blobs['data'].astype(np.float16, copy=False)}
+    forward_kwargs = {'data': blobs['data'].astype(np.float32, copy=False)}
     if cfg.TEST.HAS_RPN:
-        forward_kwargs['im_info'] = blobs['im_info'].astype(np.float16, copy=False)
+        forward_kwargs['im_info'] = blobs['im_info'].astype(np.float32, copy=False)
     else:
-        forward_kwargs['rois'] = blobs['rois'].astype(np.float16, copy=False)
+        forward_kwargs['rois'] = blobs['rois'].astype(np.float32, copy=False)
     #blobs_out = net.forward(**forward_kwargs)
     blobs_out = net.run(net.q, forward_kwargs, ['rois'])
     """
