@@ -36,11 +36,11 @@ class CaffeFunction(DeepFunction):
       self.input[net.input[i]] = self.getDevTempTensor(net.input[i], True)
 
     # create operators
-    for l in net.layer:
-      print(l)
+    for l in net.layer:      
       l_blob = []
 
       for idx in xrange(self.weight.num_blobs(str(l.name))):
+        print("idx:", idx)
         l_blob.append(self.weight.get_blob(str(l.name), idx))
       
       if l.type == "Python" and l.python_param.layer == "ProposalLayer":
