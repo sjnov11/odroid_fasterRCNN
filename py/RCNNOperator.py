@@ -66,7 +66,7 @@ def py_gpu_nms(dets, thresh, q, ctx, prg):
 	col_blocks = div_up(boxes_num, threadsPerBlock)
 
 	boxes_dev = pyCL.Buffer(ctx, pyCL.mem_flags.READ_WRITE, 
-		boxes_num * boxes_dim * np.dtype(np.float16).itemsize)
+		boxes_num * boxes_dim * np.dtype(np.float32).itemsize)
 	mask_dev = pyCL.Buffer(ctx,pyCL.mem_flags.READ_WRITE,
 		 boxes_num*col_blocks* np.dtype(np.uint64).itemsize)
 	pyCL.enqueue_copy(q, boxes_dev, sorted_dets, is_blocking = False)
@@ -75,7 +75,7 @@ def py_gpu_nms(dets, thresh, q, ctx, prg):
 		(div_up(boxes_num,threadsPerBlock) * threadsPerBlock,
 			 div_up(boxes_num,threadsPerBlock)),
 		(threadsPerBlock,1),
-		np.int32(boxes_num), np.float16(thresh),
+		np.int32(boxes_num), np.float32(thresh),
 		boxes_dev, mask_dev
 	)
 	mask_host = np.zeros(boxes_num * col_blocks, dtype = np.uint64)
@@ -233,8 +233,8 @@ class Proposal(Operator):
 		# Output rois blob
 		# Our RPN implementation only supports a single input image, so all
 		# batch inds are 0
-		batch_inds = np.zeros((proposals.shape[0], 1), dtype=np.float16)
-		blob = np.hstack((batch_inds, proposals.astype(np.float16, copy=False)))
+		batch_inds = np.zeros((proposals.shape[0], 1), dtype=np.float32)
+		blob = np.hstack((batch_inds, proposals.astype(np.float32, copy=False)))
 
 		self.output_act.setShape(blob.shape)
 		output = self.output_act.getDevBuf()

@@ -17,7 +17,7 @@ class DevBuffer:
 	def toHost(self, is_blocking = True):
 		if self.devTT.pos != "h":
 			self.devTT.pos = "h"
-			self.devTT.host_buf = np.empty(self.devTT.shape, dtype = np.float16)
+			self.devTT.host_buf = np.empty(self.devTT.shape, dtype = np.float32)
 			pyCL.enqueue_copy(self.devTT.deep_func.q, self.devTT.host_buf, self.devTT.buf, is_blocking = is_blocking)
 		return self.devTT.host_buf
 
@@ -58,7 +58,7 @@ class DevTempTensor:
 	def ref(self):
 		self.ref_count += 1
 
-	def setShape(self, shape, dtype = np.float16):
+	def setShape(self, shape, dtype = np.float32):
 		if(self.shape != shape):
 			self.pos = "d"
 			self.host_buf = None
