@@ -52,7 +52,7 @@ NETS = {'vgg16': ('VGG16',
 def vis_detections(im, class_name, dets, thresh=0.5):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
-    print(inds)
+    #print(inds)
     if len(inds) == 0:
         return
     """
