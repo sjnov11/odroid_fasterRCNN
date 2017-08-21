@@ -183,13 +183,13 @@ __kernel void blockedMM_NN( int M, int N, int K,
 }
 
 __kernel void blockedMM_NN2( int M, int N, int K, 
-    __global const float* A1, __global const float* B1, __global float* C1 )
+    __global float* A1, __global float* B1, __global float* C1 )
 {
     uint j = get_global_id(0);
     uint i = get_global_id(1);
 	
-    half* A = (half *)A1;
-    half* B = (half *)B1;
+    const half* A = (half *)A1;
+    const half* B = (half *)B1;
     
 
 	if( i >= M || (j<<2)>= N)
