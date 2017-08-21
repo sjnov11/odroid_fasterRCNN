@@ -55,7 +55,7 @@ def vis_detections(im, class_name, dets, thresh=0.5):
     #print(inds)
     if len(inds) == 0:
         return
-    """
+    
     im = im[:, :, (2, 1, 0)]
     fig, ax = plt.subplots(figsize=(12, 12))
     ax.imshow(im, aspect='equal')
@@ -81,7 +81,7 @@ def vis_detections(im, class_name, dets, thresh=0.5):
     plt.axis('off')
     plt.tight_layout()
     plt.draw()
-    """
+    
 
 def demo(net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
@@ -162,4 +162,4 @@ if __name__ == '__main__':
         print 'Demo for {}'.format(im_name)
         demo(net, im_name)
 
-    #plt.show()
+    plt.show()
