@@ -188,8 +188,8 @@ __kernel void blockedMM_NN2( int M, int N, int K,
     uint j = get_global_id(0);
     uint i = get_global_id(1);
 	
-    const half* A = (half *)A1;
-    const half* B = (half *)B1;
+    __global const half* A = (__global const half *)A1;
+    __global const half* B = (__global const half *)B1;
     
 
 	if( i >= M || (j<<2)>= N)
