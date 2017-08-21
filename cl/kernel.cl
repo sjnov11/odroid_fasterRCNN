@@ -207,17 +207,17 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 		{
 			case 4:
 			{
-				float4 sum = (float4)(0.0f);
+				half4 sum = (half4)(0.0f);
 				uint kd4 = K>>2;
 				
 				for(uint k =0; k < kd4; ++k)
 				{
-					float4 a = vload4(k, A + i*K);
+					half4 a = vload4(k, A + i*K);
 					
-					float4 b0 = vload4(j, B + (k*4 +0)*N);
-					float4 b1 = vload4(j, B + (k*4 +1)*N);
-					float4 b2 = vload4(j, B + (k*4 +2)*N);
-					float4 b3 = vload4(j, B + (k*4 +3)*N);
+					half4 b0 = vload4(j, B + (k*4 +0)*N);
+					half4 b1 = vload4(j, B + (k*4 +1)*N);
+					half4 b2 = vload4(j, B + (k*4 +2)*N);
+					half4 b3 = vload4(j, B + (k*4 +3)*N);
 					
 					sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 				}		
@@ -232,17 +232,17 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			break;
 			case 3:
 			{
-				float3 sum = (float3)(0.0f);
+				half3 sum = (half3)(0.0f);
 				uint kd4 = K>>2;
 				
 				for(uint k =0; k < kd4; ++k)
 				{
-					float4 a = vload4(k, A + i*K);
+					half4 a = vload4(k, A + i*K);
 					
-					float3 b0 = vload3(0, B + (k*4 +0)*N + (j<<2));
-					float3 b1 = vload3(0, B + (k*4 +1)*N + (j<<2));
-					float3 b2 = vload3(0, B + (k*4 +2)*N + (j<<2));
-					float3 b3 = vload3(0, B + (k*4 +3)*N + (j<<2));
+					half3 b0 = vload3(0, B + (k*4 +0)*N + (j<<2));
+					half3 b1 = vload3(0, B + (k*4 +1)*N + (j<<2));
+					half3 b2 = vload3(0, B + (k*4 +2)*N + (j<<2));
+					half3 b3 = vload3(0, B + (k*4 +3)*N + (j<<2));
 					
 					sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 
@@ -258,17 +258,17 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			break;
 			case 2:
 			{
-				float2 sum = (float2)(0.0f);
+				half2 sum = (half2)(0.0f);
 				uint kd4 = K>>2;
 				
 				for(uint k =0; k < kd4; ++k)
 				{
-					float4 a = vload4(k, A + i*K);
+					half4 a = vload4(k, A + i*K);
 					
-					float2 b0 = vload2(0, B + (k*4 +0)*N + (j<<2));
-					float2 b1 = vload2(0, B + (k*4 +1)*N + (j<<2));
-					float2 b2 = vload2(0, B + (k*4 +2)*N + (j<<2));
-					float2 b3 = vload2(0, B + (k*4 +3)*N + (j<<2));
+					half2 b0 = vload2(0, B + (k*4 +0)*N + (j<<2));
+					half2 b1 = vload2(0, B + (k*4 +1)*N + (j<<2));
+					half2 b2 = vload2(0, B + (k*4 +2)*N + (j<<2));
+					half2 b3 = vload2(0, B + (k*4 +3)*N + (j<<2));
 					
 					sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					
@@ -289,12 +289,12 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k =0; k < kd4; ++k)
 				{
-					float4 a = vload4(k, A + i*K);
+					half4 a = vload4(k, A + i*K);
 					
-					float b0 = B[(k*4 +0)*N + (j<<2)];
-					float b1 = B[(k*4 +1)*N + (j<<2)];
-					float b2 = B[(k*4 +2)*N + (j<<2)];
-					float b3 = B[(k*4 +3)*N + (j<<2)];
+					half b0 = B[(k*4 +0)*N + (j<<2)];
+					half b1 = B[(k*4 +1)*N + (j<<2)];
+					half b2 = B[(k*4 +2)*N + (j<<2)];
+					half b3 = B[(k*4 +3)*N + (j<<2)];
 					
 					sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					
