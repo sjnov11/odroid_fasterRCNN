@@ -226,7 +226,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload4(j, B + k*N);
 				}		
-				float f_sum = (float)sum;
+				float4 f_sum = (float4)sum;
 				vstore4(f_sum, j, C + i*N);
 			}
 			break;
@@ -252,7 +252,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload3(0, B + k*N + (j<<2));
 				}		
-				float f_sum = (float)sum;				
+				float3 f_sum = (float3)sum;				
 				vstore3(f_sum, 0, C + i*N + (j<<2));
 			}
 			break;
@@ -278,13 +278,13 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload2(0, B + k*N + (j<<2));
 				}		
-				float f_sum = (float)sum;				
+				float2 f_sum = (float2)sum;				
 				vstore2(f_sum, 0, C + i*N + (j<<2));
 			}
 			break;
 			default:
 			{
-				float sum = (0.0f);
+				half sum = (0.0f);
 				uint kd4 = K>>2;
 				
 				for(uint k =0; k < kd4; ++k)
