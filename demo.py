@@ -52,10 +52,10 @@ NETS = {'vgg16': ('VGG16',
 def vis_detections(im, class_name, dets, thresh=0.5):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
-    print(inds)
+    #print(inds)
     if len(inds) == 0:
         return
-
+    """
     im = im[:, :, (2, 1, 0)]
     fig, ax = plt.subplots(figsize=(12, 12))
     ax.imshow(im, aspect='equal')
@@ -81,7 +81,7 @@ def vis_detections(im, class_name, dets, thresh=0.5):
     plt.axis('off')
     plt.tight_layout()
     plt.draw()
-
+    """
 
 def demo(net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
@@ -110,7 +110,7 @@ def demo(net, image_name):
         cls_boxes = boxes[:, 4*cls_ind:4*(cls_ind + 1)]
         cls_scores = scores[:, cls_ind]
         dets = np.hstack((cls_boxes,
-                          cls_scores[:, np.newaxis])).astype(np.float16)
+                          cls_scores[:, np.newaxis])).astype(np.float32)
         keep = nms(dets, NMS_THRESH)
         dets = dets[keep, :]
         vis_detections(im, cls, dets, thresh=CONF_THRESH)
@@ -155,10 +155,11 @@ if __name__ == '__main__':
 
     print '\n\nLoaded network {:s}'.format(caffemodel)
 
-    im_names = [ '000001.jpg', '000002.jpg', '000456.jpg']#, '001141.jpg', '004545.jpg']
+    #im_names = [ '000001.jpg', '000002.jpg', '000456.jpg', '001141.jpg', '004545.jpg']
+    im_names = [ '000002.jpg', '000456.jpg', '001141.jpg', '004545.jpg']
     for im_name in im_names:
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
         print 'Demo for {}'.format(im_name)
         demo(net, im_name)
 
-    plt.show()
+    #plt.show()

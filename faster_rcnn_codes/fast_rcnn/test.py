@@ -52,7 +52,7 @@ def _get_image_blob(im):
         processed_ims.append(im)
 
     # Create a blob to hold the input images
-    blob = im_list_to_blob(processed_ims)
+    blob = im_list_to_blob(processed_ims).astype(np.float32, copy=False) ###
 
     return blob, np.array(im_scale_factors)
 
