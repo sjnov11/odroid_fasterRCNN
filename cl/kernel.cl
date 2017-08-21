@@ -226,8 +226,8 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload4(j, B + k*N);
 				}		
-				
-				vstore4(sum, j, C + i*N);
+				float f_sum = (float)sum;
+				vstore4(f_sum, j, C + i*N);
 			}
 			break;
 			case 3:
@@ -252,8 +252,8 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload3(0, B + k*N + (j<<2));
 				}		
-				
-				vstore3(sum, 0, C + i*N + (j<<2));
+				float f_sum = (float)sum;				
+				vstore3(f_sum, 0, C + i*N + (j<<2));
 			}
 			break;
 			case 2:
@@ -278,8 +278,8 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload2(0, B + k*N + (j<<2));
 				}		
-				
-				vstore2(sum, 0, C + i*N + (j<<2));
+				float f_sum = (float)sum;				
+				vstore2(f_sum, 0, C + i*N + (j<<2));
 			}
 			break;
 			default:
@@ -304,8 +304,8 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * B[k*N + (j<<2)];
 				}		
-				
-				C[i*N + (j<<2)] = sum;
+				float f_sum = (float)sum;				
+				C[i*N + (j<<2)] = f_sum;
 			}
 			break;
 		
