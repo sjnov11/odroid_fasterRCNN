@@ -226,7 +226,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload4(j, B + k*N);
 				}		
-				float4 f_sum = convert_float4_sat(sum);
+				float4 f_sum = convert_float4(sum);
 				vstore4(f_sum, j, C + i*N);
 			}
 			break;
@@ -252,7 +252,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload3(0, B + k*N + (j<<2));
 				}		
-				float3 f_sum = convert_float3_sat(sum);				
+				float3 f_sum = convert_float3(sum);				
 				vstore3(f_sum, 0, C + i*N + (j<<2));
 			}
 			break;
@@ -278,7 +278,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload2(0, B + k*N + (j<<2));
 				}		
-				float2 f_sum = convert_float2_sat(sum);				
+				float2 f_sum = convert_float2(sum);				
 				vstore2(f_sum, 0, C + i*N + (j<<2));
 			}
 			break;
@@ -304,7 +304,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * B[k*N + (j<<2)];
 				}		
-				float f_sum = convert_float_sat(sum);				
+				float f_sum = convert_float(sum);				
 				C[i*N + (j<<2)] = f_sum;
 			}
 			break;
