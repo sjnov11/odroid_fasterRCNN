@@ -4,3 +4,4 @@ demo/*
 clRCNN_release_improved2.pyproj
 *.pyc
 *.sln
+*.TMP
