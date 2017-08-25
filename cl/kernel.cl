@@ -212,7 +212,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k =0; k < kd4; ++k)
 				{
-					half4 a = vload4(k, A + i*K);
+					half4 a = convert_half4(vload4(k, A + i*K));
 					
 					half4 b0 = vload4(j, B + (k*4 +0)*N);
 					half4 b1 = vload4(j, B + (k*4 +1)*N);
