@@ -1,5 +1,5 @@
 #pragma OPENCL EXTENSION cl_khr_fp16 : enable
-#pragma OPENCL EXTENSION cl_amd_printf : enable
+#pragma OPENCL EXTENSION cl_arm_printf : enable
 
 __kernel void sum(__global const float* a_g, __global const float* b_g, __global float *res_g)
 {
