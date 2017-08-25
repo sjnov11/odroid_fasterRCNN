@@ -185,13 +185,13 @@ __kernel void blockedMM_NN( int M, int N, int K,
 }
 
 __kernel void blockedMM_NN2( int M, int N, int K, 
-    __global const float* A, __global const float* B, __global float* C )
+    __global const float* A1, __global const float* B1, __global float* C )
 {
     uint j = get_global_id(0);
     uint i = get_global_id(1);
 	
-    __global const half* A = (__global const half *)A;
-    __global const half* B = (__global const half *)B;
+    __global const half* A = (__global const half *)A1;
+    __global const half* B = (__global const half *)B1;
     
 
 	if( i >= M || (j<<2)>= N)
@@ -225,7 +225,9 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
 					sum += A[i*K + k] * vload4(j, B + k*N);
-				}		
+				}
+				A1 = convert_float4(A);
+				B1 = convert_float4(B);
 				float4 f_sum = convert_float4(sum);
 				vstore4(f_sum, j, C + i*N);
 			}
@@ -252,6 +254,8 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload3(0, B + k*N + (j<<2));
 				}		
+				A1 = convert_float3(A);
+				B1 = convert_float3(B);
 				float3 f_sum = convert_float3(sum);				
 				vstore3(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -278,6 +282,8 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload2(0, B + k*N + (j<<2));
 				}		
+				A1 = convert_float2(A);
+				B1 = convert_float2(B);
 				float2 f_sum = convert_float2(sum);				
 				vstore2(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -303,7 +309,9 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
 					sum += A[i*K + k] * B[k*N + (j<<2)];
-				}		
+				}
+				A1 = convert_float(A);
+				B1 = convert_float(B);		
 				float f_sum = convert_float(sum);				
 				C[i*N + (j<<2)] = f_sum;
 			}
