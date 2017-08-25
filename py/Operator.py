@@ -126,7 +126,7 @@ class Convolution(Operator):
 		#	np.float32(1.), weight.toDev(), temp.toDev(),
 		#	np.float32(0.), output.toDev()
 		#)
-		
+		print(weight.toDev())
 		self.prg.blockedMM_NN2(q,
 			(globalSize(self.N/4, 8),globalSize(self.M, 8)), (8,8),
 			np.int32(self.M), np.int32(self.N), np.int32(self.K),
@@ -280,7 +280,7 @@ class InnerProduct(Operator):
 		
 		output_shape = self.output_act.shape
 		output_size = self.output_act.size
-		
+		print(input.toDev())
 		if self.M == 1:
 			self.prg.blockedMM_NN2(q,
 				(globalSize(self.N/4, 32),globalSize(self.M, 1)), (32,1),

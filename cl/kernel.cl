@@ -1,5 +1,4 @@
 #pragma OPENCL EXTENSION cl_khr_fp16 : enable
-#pragma OPENCL EXTENSION cl_arm_printf : enable
 
 __kernel void sum(__global const float* a_g, __global const float* b_g, __global float *res_g)
 {
@@ -197,7 +196,6 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 
 	if( i >= M || (j<<2)>= N)
 	{
-		printf("sjnov11 : F1\n");
 		return;
 	}
 	else
@@ -228,9 +226,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload4(j, B + k*N);
 				}		
-				printf("sum = %2.2v4hlf\n", sum);
 				float4 f_sum = convert_float4(sum);
-				printf("f_sum = %2.2v4hlf\n", f_sum);
 				vstore4(f_sum, j, C + i*N);
 			}
 			break;
@@ -256,7 +252,6 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload3(0, B + k*N + (j<<2));
 				}		
-				printf("sjnov11 : F2\n");
 				float3 f_sum = convert_float3(sum);				
 				vstore3(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -283,7 +278,6 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload2(0, B + k*N + (j<<2));
 				}		
-				printf("sjnov11 : F3\n");
 				float2 f_sum = convert_float2(sum);				
 				vstore2(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -310,7 +304,6 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * B[k*N + (j<<2)];
 				}		
-				printf("sjnov11 : F4\n");
 				float f_sum = convert_float(sum);				
 				C[i*N + (j<<2)] = f_sum;
 			}
