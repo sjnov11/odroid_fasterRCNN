@@ -197,6 +197,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 
 	if( i >= M || (j<<2)>= N)
 	{
+		printf("sjnov11 : F1\n")
 		return;
 	}
 	else
@@ -255,6 +256,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload3(0, B + k*N + (j<<2));
 				}		
+				printf("sjnov11 : F2\n")
 				float3 f_sum = convert_float3(sum);				
 				vstore3(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -281,6 +283,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * vload2(0, B + k*N + (j<<2));
 				}		
+				printf("sjnov11 : F3\n")
 				float2 f_sum = convert_float2(sum);				
 				vstore2(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -307,6 +310,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				{
 					sum += A[i*K + k] * B[k*N + (j<<2)];
 				}		
+				printf("sjnov11 : F4\n")
 				float f_sum = convert_float(sum);				
 				C[i*N + (j<<2)] = f_sum;
 			}
