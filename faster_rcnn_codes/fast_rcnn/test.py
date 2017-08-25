@@ -159,7 +159,7 @@ def im_detect(net, im, boxes=None):
     #blobs_out = net.forward(**forward_kwargs)
     for key, value in forward_kwargs.items():
         print("Key : ", key);
-        pirnt("Val : ", value);
+        print("Val : ", value);
     blobs_out = net.run(net.q, forward_kwargs, ['rois'])
     """
     _blb_map = {}
