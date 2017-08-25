@@ -185,13 +185,13 @@ __kernel void blockedMM_NN( int M, int N, int K,
 }
 
 __kernel void blockedMM_NN2( int M, int N, int K, 
-    __global const float* A1, __global const float* B1, __global float* C )
+    __global const float* A, __global const float* B, __global float* C )
 {	
     uint j = get_global_id(0);
     uint i = get_global_id(1);
 	
-    __global const half* A = (__global const half *)A1;
-    __global const half* B = (__global const half *)B1;
+    //__global const half* A = (__global const half *)A1;
+    //__global const half* B = (__global const half *)B1; // implicit casting 이라 오류
     
 
 	if( i >= M || (j<<2)>= N)
