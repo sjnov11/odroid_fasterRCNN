@@ -219,18 +219,17 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half4 b2 = convert_half4(vload4(j, B + (k*4 +2)*N));
 					half4 b3 = convert_half4(vload4(j, B + (k*4 +3)*N));
 					
-					sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+					// Sum 10 times, and then divide by 10.
+					for(int i = 0; i < 5; i++) { 
+						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+					}
+					sum = sum / 10;
+					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 				}		
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					// sum 10 times, then divide by 10.
-					for(int i = 0; i < 5; i++) 
-					{ 
-						sum += convert_half(A[i*K + k]) * convert_half4(vload4(j, B + k*N));
-					}
-					sum = sum / 10;
-					
+					sum += convert_half(A[i*K + k]) * convert_half4(vload4(j, B + k*N));
 				}		
 				float4 f_sum = convert_float4(sum);
 				vstore4(f_sum, j, C + i*N);
@@ -250,19 +249,18 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half3 b2 = convert_half3(vload3(0, B + (k*4 +2)*N + (j<<2)));
 					half3 b3 = convert_half3(vload3(0, B + (k*4 +3)*N + (j<<2)));
 					
-					sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+					// Sum 10 times, and then divide by 10.
+					for(int i = 0; i < 5; i++) { 
+						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+					}
+					sum = sum / 10;
+					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 
 				}		
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					// sum 10 times, then divide by 10.
-					for(int i = 0; i < 5; i++) 
-					{ 
-						sum += convert_half(A[i*K + k]) * convert_half3(vload3(0, B + k*N + (j<<2)));
-					}
-					sum = sum / 10;
-					
+					sum += convert_half(A[i*K + k]) * convert_half3(vload3(0, B + k*N + (j<<2)));
 				}		
 				float3 f_sum = convert_float3(sum);				
 				vstore3(f_sum, 0, C + i*N + (j<<2));
@@ -282,19 +280,18 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half2 b2 = convert_half2(vload2(0, B + (k*4 +2)*N + (j<<2)));
 					half2 b3 = convert_half2(vload2(0, B + (k*4 +3)*N + (j<<2)));
 					
-					sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+					// Sum 10 times, and then divide by 10.
+					for(int i = 0; i < 5; i++) { 
+						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+					}
+					sum = sum / 10;
+					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					
 				}		
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					// sum 10 times, then divide by 10.
-					for(int i = 0; i < 5; i++) 
-					{ 
-						sum += convert_half(A[i*K + k]) * convert_half2(vload2(0, B + k*N + (j<<2)));
-					}
-					sum = sum / 10;
-					
+					sum += convert_half(A[i*K + k]) * convert_half2(vload2(0, B + k*N + (j<<2)));
 				}		
 				float2 f_sum = convert_float2(sum);				
 				vstore2(f_sum, 0, C + i*N + (j<<2));
@@ -314,19 +311,18 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half b2 = convert_half(B[(k*4 +2)*N + (j<<2)]);
 					half b3 = convert_half(B[(k*4 +3)*N + (j<<2)]);
 					
-					sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+					// Sum 10 times, and then divide by 10.
+					for(int i = 0; i < 5; i++) { 
+						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+					}
+					sum = sum / 10;
+					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					
 				}		
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					// sum 10 times, then divide by 10.
-					for(int i = 0; i < 5; i++) 
-					{ 
-						sum += convert_half(A[i*K + k]) * convert_half(B[k*N + (j<<2)]);
-					}
-					sum = sum / 10;
-					
+					sum += convert_half(A[i*K + k]) * convert_half(B[k*N + (j<<2)]);
 				}		
 				float f_sum = convert_float(sum);				
 				C[i*N + (j<<2)] = f_sum;
