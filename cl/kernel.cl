@@ -207,6 +207,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 		{
 			case 4:
 			{
+				half4 temp = (half4)(0.0f);
 				half4 sum = (half4)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -221,9 +222,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					// Sum 10 times, and then divide by 10.
 					for(int i = 0; i < 10; i++) { 
-						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum = sum / 10;
+					sum += temp / 10;
+					temp = (half4)(0.0f);
 					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 				}		
 				
@@ -237,6 +239,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			break;
 			case 3:
 			{
+				half3 temp = (half3)(0.0f);
 				half3 sum = (half3)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -251,9 +254,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					// Sum 10 times, and then divide by 10.
 					for(int i = 0; i < 10; i++) { 
-						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum = sum / 10;
+					sum += temp / 10;
+					temp = (half3)(0.0f);
 					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 
 				}		
@@ -268,6 +272,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			break;
 			case 2:
 			{
+				half2 temp = (half2)(0.0f);
 				half2 sum = (half2)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -282,9 +287,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					// Sum 10 times, and then divide by 10.
 					for(int i = 0; i < 10; i++) { 
-						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum = sum / 10;
+					sum += temp / 10;
+					temp = (half2)(0.0f);
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					
 				}		
@@ -299,6 +305,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			break;
 			default:
 			{
+				half temp = (0.0f);
 				half sum = (0.0f);
 				uint kd4 = K>>2;
 				
@@ -313,9 +320,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					// Sum 10 times, and then divide by 10.
 					for(int i = 0; i < 10; i++) { 
-						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
+						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum = sum / 10;
+					sum += temp / 10;
+					temp = (0.0f);
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					
 				}		
