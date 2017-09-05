@@ -220,7 +220,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half4 b3 = convert_half4(vload4(j, B + (k*4 +3)*N));
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 5; i++) { 
+					for(int i = 0; i < 10; i++) { 
 						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
 					sum = sum / 10;
@@ -250,7 +250,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half3 b3 = convert_half3(vload3(0, B + (k*4 +3)*N + (j<<2)));
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 5; i++) { 
+					for(int i = 0; i < 10; i++) { 
 						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
 					sum = sum / 10;
@@ -281,7 +281,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half2 b3 = convert_half2(vload2(0, B + (k*4 +3)*N + (j<<2)));
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 5; i++) { 
+					for(int i = 0; i < 10; i++) { 
 						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
 					sum = sum / 10;
@@ -312,7 +312,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half b3 = convert_half(B[(k*4 +3)*N + (j<<2)]);
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 5; i++) { 
+					for(int i = 0; i < 10; i++) { 
 						sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
 					sum = sum / 10;
