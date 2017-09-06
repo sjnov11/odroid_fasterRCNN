@@ -156,8 +156,8 @@ if __name__ == '__main__':
 
     print '\n\nLoaded network {:s}'.format(caffemodel)
 
-    #im_names = [ '000001.jpg', '000002.jpg', '000456.jpg', '001141.jpg', '004545.jpg']
-    im_names = [  '004545.jpg', '001141.jpg', '000456.jpg', '000002.jpg', '000001.jpg']
+    im_names = [ '000001.jpg', '000002.jpg', '000456.jpg', '001141.jpg', '004545.jpg']
+    #im_names = [  '004545.jpg', '001141.jpg', '000456.jpg', '000002.jpg', '000001.jpg']
     #im_names = [ '000002.jpg', '000456.jpg', '001141.jpg', '004545.jpg']
     for im_name in im_names:
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
