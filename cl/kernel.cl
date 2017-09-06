@@ -191,7 +191,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
     uint i = get_global_id(1);
 	
     //__global const half* A = (__global const half *)A1;
-    //__global const half* B = (__global const half *)B1; // implicit casting ÀÌ¶ó ¿À·ù
+    //__global const half* B = (__global const half *)B1; // implicit casting ï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½ï¿½
     
 
 	if( i >= M || (j<<2)>= N)
@@ -221,10 +221,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half4 b3 = convert_half4(vload4(j, B + (k*4 +3)*N));
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 10; i++) { 
+					for(int i = 0; i < 100; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / 10;
+					sum += temp / 100;
 					temp = (half4)(0.0f);
 					
 					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -255,10 +255,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 10; i++) { 
+					for(int i = 0; i < 100; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / 10;
+					sum += temp / 100;
 					temp = (half3)(0.0f);
 					
 					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -290,10 +290,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 10; i++) { 
+					for(int i = 0; i < 100; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / 10;
+					sum += temp / 100;
 					temp = (half2)(0.0f);
 					
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -325,10 +325,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 10; i++) { 
+					for(int i = 0; i < 100; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / 10;
+					sum += temp / 100;
 					temp = (0.0f);
 					
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
