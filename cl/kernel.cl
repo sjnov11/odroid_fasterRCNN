@@ -221,10 +221,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					half4 b3 = convert_half4(vload4(j, B + (k*4 +3)*N));
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 1000000; i++) { 
+					for(int i = 0; i < 1000; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / 1000000;
+					sum += temp / 1000;
 					temp = (half4)(0.0f);
 					
 					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -255,10 +255,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 1000000; i++) { 
+					for(int i = 0; i < 1000; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / 1000000;
+					sum += temp / 1000;
 					temp = (half3)(0.0f);
 					
 					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -290,10 +290,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 1000000; i++) { 
+					for(int i = 0; i < 1000; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / 1000000;
+					sum += temp / 1000;
 					temp = (half2)(0.0f);
 					
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -325,10 +325,10 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					
 					
 					// Sum 10 times, and then divide by 10.
-					for(int i = 0; i < 1000000; i++) { 
+					for(int i = 0; i < 1000; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / 1000000;
+					sum += temp / 1000;
 					temp = (0.0f);
 					
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
