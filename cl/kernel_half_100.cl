@@ -208,6 +208,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			case 4:
 			{
 				half4 temp = (half4)(0.0f);
+				half4 temp2 = (half4)(0.0f);
 				half4 sum = (half4)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -232,8 +233,12 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					sum += convert_half(A[i*K + k]) * convert_half4(vload4(j, B + k*N));
+					for(int i = 0; i < 100; i++) { 
+						temp2 += convert_half(A[i*K + k]) * convert_half4(vload4(j, B + k*N));\
+					}
+					// sum += convert_half(A[i*K + k]) * convert_half4(vload4(j, B + k*N));
 				}		
+				sum += temp2 / 100;
 				float4 f_sum = convert_float4(sum);
 				vstore4(f_sum, j, C + i*N);
 			}
@@ -241,6 +246,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			case 3:
 			{
 				half3 temp = (half3)(0.0f);
+				half3 temp2 = (half3)(0.0f);
 				half3 sum = (half3)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -267,8 +273,12 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					sum += convert_half(A[i*K + k]) * convert_half3(vload3(0, B + k*N + (j<<2)));
-				}		
+					for(int i = 0; i < 100; i++) { 
+						temp2 += convert_half(A[i*K + k]) * convert_half3(vload3(0, B + k*N + (j<<2)));
+					}
+					// sum += convert_half(A[i*K + k]) * convert_half3(vload3(0, B + k*N + (j<<2)));
+				}	
+				sum += temp2 / 100;	
 				float3 f_sum = convert_float3(sum);				
 				vstore3(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -276,6 +286,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			case 2:
 			{
 				half2 temp = (half2)(0.0f);
+				half2 temp2 = (half2)(0.0f);
 				half2 sum = (half2)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -302,8 +313,12 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					sum += convert_half(A[i*K + k]) * convert_half2(vload2(0, B + k*N + (j<<2)));
+					for(int i = 0; i < 100; i++) { 
+						temp2 += convert_half(A[i*K + k]) * convert_half2(vload2(0, B + k*N + (j<<2)));
+					}
+					// sum += convert_half(A[i*K + k]) * convert_half2(vload2(0, B + k*N + (j<<2)));
 				}		
+				sum += temp2 / 100;
 				float2 f_sum = convert_float2(sum);				
 				vstore2(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -311,6 +326,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			default:
 			{
 				half temp = (0.0f);
+				half temp2 = (0.0f);
 				half sum = (0.0f);
 				uint kd4 = K>>2;
 				
@@ -337,8 +353,12 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					sum += convert_half(A[i*K + k]) * convert_half(B[k*N + (j<<2)]);
+					for(int i = 0; i < 100; i++) { 
+						temp2 += convert_half(A[i*K + k]) * convert_half(B[k*N + (j<<2)]);
+					}
+					// sum += convert_half(A[i*K + k]) * convert_half(B[k*N + (j<<2)]);
 				}		
+				sum += temp2 / 100;
 				float f_sum = convert_float(sum);				
 				C[i*N + (j<<2)] = f_sum;
 			}
