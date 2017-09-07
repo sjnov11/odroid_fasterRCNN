@@ -346,7 +346,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					for(int i = 0; i < 10; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / (half)10;
+					sum += temp / 10;
 					temp = (0.0f);
 					
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -360,7 +360,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					}
 					//sum += convert_half(A[i*K + k]) * convert_half(B[k*N + (j<<2)]);
 				}		
-				sum += temp2 / (half)10;
+				sum += temp2 / 10;
 				float f_sum = convert_float(sum);				
 				C[i*N + (j<<2)] = f_sum;
 			}
