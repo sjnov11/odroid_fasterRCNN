@@ -202,6 +202,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			case 4:
 			{
 				float4 temp = (float4)(0.0f);
+				float4 temp2 = (float4)(0.0f);
 				float4 sum = (float4)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -225,15 +226,19 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					sum += A[i*K + k] * vload4(j, B + k*N);
+					for(int i = 0; i < 100; i++) { 
+						temp2 += A[i*K + k] * vload4(j, B + k*N);
+					}
+					//sum += A[i*K + k] * vload4(j, B + k*N);
 				}		
-				
+				sum += temp2 / 100;
 				vstore4(sum, j, C + i*N);
 			}
 			break;
 			case 3:
 			{
 				float3 temp = (float3)(0.0f);
+				float3 temp2 = (float3)(0.0f);
 				float3 sum = (float3)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -258,8 +263,12 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					sum += A[i*K + k] * vload3(0, B + k*N + (j<<2));
+					for(int i = 0; i < 100; i++) { 
+						temp2 += A[i*K + k] * vload3(0, B + k*N + (j<<2));
+					}
+					//sum += A[i*K + k] * vload3(0, B + k*N + (j<<2));
 				}		
+				sum += temp2 / 100;
 				
 				vstore3(sum, 0, C + i*N + (j<<2));
 			}
@@ -267,6 +276,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 			case 2:
 			{
 				float2 temp = (float2)(0.0f);
+				float2 temp2 = (float2)(0.0f);
 				float2 sum = (float2)(0.0f);
 				uint kd4 = K>>2;
 				
@@ -291,15 +301,19 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					sum += A[i*K + k] * vload2(0, B + k*N + (j<<2));
+					for(int i = 0; i < 100; i++) { 
+						temp2 += A[i*K + k] * vload2(0, B + k*N + (j<<2));
+					}
+					//sum += A[i*K + k] * vload2(0, B + k*N + (j<<2));
 				}		
-				
+				sum += temp2 / 100;
 				vstore2(sum, 0, C + i*N + (j<<2));
 			}
 			break;
 			default:
 			{
 				float temp = (0.0f);
+				float temp2 = (0.0f);
 				float sum = (0.0f);
 				uint kd4 = K>>2;
 				
@@ -324,8 +338,12 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 				
 				for(uint k = (kd4<<2) ; k < K; ++k)
 				{
-					sum += A[i*K + k] * B[k*N + (j<<2)];
+					for(int i = 0; i < 100; i++) { 
+						temp2 += A[i*K + k] * B[k*N + (j<<2)];
+					}
+					//sum += A[i*K + k] * B[k*N + (j<<2)];
 				}		
+				sum += temp2 / 100;
 				
 				C[i*N + (j<<2)] = sum;
 			}
