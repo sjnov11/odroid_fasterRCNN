@@ -225,7 +225,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					for(int i = 0; i < 10; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / (half4)(10);
+					sum += temp / (half4)(10.0f);
 					temp = (half4)(0.0f);
 					
 					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -240,7 +240,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					//sum += convert_half(A[i*K + k]) * convert_half4(vload4(j, B + k*N));
 					
 				}
-				sum += temp2 / (half4)(10);		
+				sum += temp2 / (half4)(10.0f);		
 				float4 f_sum = convert_float4(sum);
 				vstore4(f_sum, j, C + i*N);
 			}
@@ -266,7 +266,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					for(int i = 0; i < 10; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / (half3)(10);
+					sum += temp / (half3)(10.0f);
 					temp = (half3)(0.0f);
 					
 					// sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -280,7 +280,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					}
 					//sum += convert_half(A[i*K + k]) * convert_half3(vload3(0, B + k*N + (j<<2)));
 				}
-				sum += temp2 / (half3)(10);		
+				sum += temp2 / (half3)(10.0f);		
 				float3 f_sum = convert_float3(sum);				
 				vstore3(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -306,7 +306,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					for(int i = 0; i < 10; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / (half2)(10);
+					sum += temp / (half2)(10.0f);
 					temp = (half2)(0.0f);
 					
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -320,7 +320,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					}
 					//sum += convert_half(A[i*K + k]) * convert_half2(vload2(0, B + k*N + (j<<2)));
 				}	
-				sum += temp2 / (half2)(10);	
+				sum += temp2 / (half2)(10.0f);	
 				float2 f_sum = convert_float2(sum);				
 				vstore2(f_sum, 0, C + i*N + (j<<2));
 			}
@@ -346,7 +346,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					for(int i = 0; i < 10; i++) { 
 						temp += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
 					}
-					sum += temp / (half)(10);
+					sum += temp / (half)(10.0f);
 					temp = (0.0f);
 					
 					//sum += a.s0*b0 + a.s1*b1 + a.s2*b2 + a.s3*b3;
@@ -360,7 +360,7 @@ __kernel void blockedMM_NN2( int M, int N, int K,
 					}
 					//sum += convert_half(A[i*K + k]) * convert_half(B[k*N + (j<<2)]);
 				}		
-				sum += temp2 / (half)(10);
+				sum += temp2 / (half)(10.0f);
 				float f_sum = convert_float(sum);				
 				C[i*N + (j<<2)] = f_sum;
 			}
