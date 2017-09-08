@@ -1,5 +1,6 @@
 demo/*
 cache/*
+result/*
 *.pyproj
 .vs/
 clRCNN_release_improved2.pyproj
